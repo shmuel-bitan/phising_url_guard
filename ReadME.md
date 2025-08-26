@@ -27,3 +27,66 @@ L’extension affiche une **bannière d’alerte** avant toute saisie de mot de 
 
 ## 📦 Structure du projet
 
+url-guard/
+├─ manifest.json # Manifest V3 de l’extension
+├─ background.js # Service worker (stockage whitelist)
+├─ content.js # Détection & affichage de la bannière
+├─ popup.html # Interface popup
+└─ popup.js # Logique de la popup
+
+
+---
+
+## 🚀 Installation (mode développeur)
+
+1. **Cloner** le dépôt :
+   git clone https://github.com/<ton-compte>/url-guard.git
+   cd url-guard
+
+
+Ouvrir Chrome et aller sur :
+
+chrome://extensions/
+
+
+Activer le Mode développeur (coin haut à droite)
+
+Cliquer sur “Charger l’extension non empaquetée”
+et sélectionner le dossier url-guard/
+
+L’extension apparaît dans la liste et son icône est disponible dans la barre d’extensions.
+
+✔️ Compatible avec Chrome, Brave, Edge, Opera (tous basés sur Chromium).
+
+🧪 Tests rapides
+
+Punycode (IDN) :
+👉 http://xn--n3h.net/
+ → (☃.net) → doit afficher punycode
+
+Non-ASCII :
+👉 https://bücher.de/
+ → doit afficher caractères non-ASCII / punycode
+
+Lookalike :
+👉 Crée un domaine de test ou modifie ton hosts vers paypa1.com → doit afficher proche de paypal.com (distance 1)
+
+⚙️ Personnalisation
+Liste des marques surveillées
+
+Dans content.js, modifie la constante BRANDS :
+
+const BRANDS = [
+  "google.com",
+  "paypal.com",
+  "facebook.com",
+  "banquepopulaire.fr",
+  "impots.gouv.fr"
+];
+
+
+Seuil de détection
+
+LOOKALIKE_MAX_DISTANCE (par défaut 2) → plus bas = plus strict.
+
+LOOKALIKE_CHECK_TLD = true → alerte si seul le TLD change (.com → .co).

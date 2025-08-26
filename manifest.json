@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "URL Guard — Anti-Homograph",
+  "version": "0.1.0",
+  "description": "Alerte si l’URL contient des caractères non latins/punycode ou un mix d’alphabets.",
+  "permissions": ["storage", "tabs", "scripting", "notifications"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_start"
+  }],
+  "action": {
+    "default_title": "URL Guard",
+    "default_popup": "popup.html"
+  }
+}

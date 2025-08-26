@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>URL Guard</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 12px; width: 280px; }
+      code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; }
+      li { margin: 6px 0; }
+    </style>
+  </head>
+  <body>
+    <h3>URL Guard</h3>
+    <p>Détecte : <code>non-ASCII</code>, <code>punycode</code>, <code>mélange d’alphabets</code>.</p>
+    <div id="host"></div>
+    <button id="toggle"></button>
+    <hr />
+    <small>Astuce: méfie-toi des domaines contenant <code>xn--</code> ou des caractères exotiques.</small>
+    <script src="popup.js"></script>
+  </body>
+</html>
